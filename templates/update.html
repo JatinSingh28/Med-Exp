@@ -1,0 +1,25 @@
+<!-- from .model import messages -->
+
+<h1>Sign up below</h1>
+
+<style>
+  h5 {
+    color: red;
+  }
+</style>
+
+{% for message in messages %}
+<h5>{{message}}</h5>
+{% endfor %}
+
+<form method="POST" ,action="update">
+  {% csrf_token %}
+  <p>Name:</p>
+  <input type="text" name="name" />
+  <p>Quantity:</p>
+  <input type="number" name="quantity" />
+  <p>Expiry</p>
+  <input type="date" name="expiry" />
+  <br />
+  <input type="submit" />
+</form>

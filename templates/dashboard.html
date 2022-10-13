@@ -23,45 +23,48 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Expiry</th>
-          <th scope="col">Days Left</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for detail in details %}
-        <div>
-          {% if detail.red %}
-          <tr style="background-color: red">
-            <td>{{detail.name}}</td>
-            <td>{{detail.quantity}}</td>
-            <td>{{detail.expiry}}</td>
-            <td>{{detail.time_left}}</td>
+    <div >
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Expiry</th>
+            <th scope="col">Days Left</th>
           </tr>
-          {% endif %} {% if detail.yellow %}
-          <tr style="background-color: yellow">
-            <td>{{detail.name}}</td>
-            <td>{{detail.quantity}}</td>
-            <td>{{detail.expiry}}</td>
-            <td>{{detail.time_left}}</td>
-          </tr>
-          {% endif %} {% if detail.green %}
-          <tr style="background-color: lightgreen">
-            <td>{{detail.name}}</td>
-            <td>{{detail.quantity}}</td>
-            <td>{{detail.expiry}}</td>
-            <td>{{detail.time_left}}</td>
-          </tr>
-          {% endif %}
-        </div>
+        </thead>
+        <tbody>
+          {% for detail in details %}
+          <div>
+            {% if detail.red %}
+            <tr style="background-color: red">
+              <td>{{detail.name}}</td>
+              <td>{{detail.quantity}}</td>
+              <td>{{detail.expiry}}</td>
+              <td>{{detail.time_left}}</td>
+            </tr>
+            {% endif %} {% if detail.yellow %}
+            <tr style="background-color: yellow">
+              <td>{{detail.name}}</td>
+              <td>{{detail.quantity}}</td>
+              <td>{{detail.expiry}}</td>
+              <td>{{detail.time_left}}</td>
+            </tr>
+            {% endif %} {% if detail.green %}
+            <tr style="background-color: lightgreen">
+              <td>{{detail.name}}</td>
+              <td>{{detail.quantity}}</td>
+              <td>{{detail.expiry}}</td>
+              <td>{{detail.time_left}}</td>
+            </tr>
+            {% endif %}
+          </div>
 
-        {% endfor %}
-      </tbody>
-    </table>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
     <!--[if lt IE 7]>
       <p class="browsehappy">
         You are using an <strong>outdated</strong> browser. Please
