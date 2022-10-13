@@ -59,7 +59,7 @@ def login(request):
     return render(request, 'login.html')
 
 
-def update(request):
+def add(request):
     if request.method == 'POST':
         name = request.POST['name']
         quantity = request.POST['quantity']
@@ -76,14 +76,12 @@ def update(request):
             med = Med(name=name, quantity=quantity, expiry=expiry)
             med.save()
 
-    return render(request, 'update.html')
+    return render(request, 'add.html')
 
 
 def dashboard(request):
     details = Med.objects.all().order_by('expiry').values()
     date = Date.today()
-
-    username = request.POST['username']
 
     x = 60
     for obj in Med.objects.all():
@@ -100,15 +98,8 @@ def dashboard(request):
             obj.green = True
         obj.save()
 
-    # for i in range(1, num+1):
-    #     mem = Med.objects.get(id=i)
-    #     d1 = mem.expiry
-    #     d0 = date
-    #     delta = d1 - d0
-    #     mem.time_left = delta.days
-    #     mem.save()
-
-    # Med.objects.update(time_left=F('expiry') - date)
-    # Med.objects.update(time_left=F('time_left').days)
-    # time_left = Med.objects.all().annotate(diff=F('expiry') - F('date'))
     return render(request, 'dashboard.html', {'details': details})
+
+
+def dash(request,pk):
+    return render(request,'dashboard.html')

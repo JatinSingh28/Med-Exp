@@ -12,3 +12,6 @@ class Med(models.Model):
     red = models.BooleanField(default=False)
     yellow = models.BooleanField(default=False)
     green = models.BooleanField(default=False)
+
+# class dashboard(models.Model):    
+
