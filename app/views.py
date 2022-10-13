@@ -83,6 +83,8 @@ def dashboard(request):
     details = Med.objects.all().order_by('expiry').values()
     date = Date.today()
 
+    username = request.POST['username']
+
     x = 60
     for obj in Med.objects.all():
         d1 = obj.expiry

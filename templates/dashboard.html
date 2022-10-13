@@ -1,77 +1,221 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
-<html>
+<html lang="en">
   <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Latest compiled and minified CSS -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>MedExp-Dashboard</title>
+    <style>
+      @import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
+      body {
+        background-color: #673ab7;
+        font-family: "Calibri", sans-serif !important;
+      }
+
+      .container {
+        margin-top: 100px;
+      }
+      .card {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0px solid transparent;
+        border-radius: 0px;
+      }
+
+      .card-body {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 1.25rem;
+      }
+
+      .card .card-title {
+        position: relative;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        background-color: transparent;
+      }
+
+      * {
+        outline: none;
+      }
+
+      .table th,
+      .table thead th {
+        font-weight: 500;
+      }
+
+      .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+      }
+
+      .table th {
+        padding: 1rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+      }
+
+      .table th,
+      .table thead th {
+        font-weight: 500;
+      }
+
+      th {
+        text-align: inherit;
+      }
+
+      .m-b-20 {
+        margin-bottom: 20px;
+      }
+
+      .customcheckbox {
+        display: block;
+        position: relative;
+        padding-left: 24px;
+        font-weight: 100;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      .customcheckbox input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .checkmark {
+        position: absolute;
+        top: -3px;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: #cdcdcd;
+        border-radius: 6px;
+      }
+
+      .customcheckbox input:checked ~ .checkmark {
+        background-color: #2196bb;
+      }
+
+      .customcheckbox .checkmark:after {
+        left: 8px;
+        top: 4px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+    </style>
   </head>
-  <body>
-    <div >
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Expiry</th>
-            <th scope="col">Days Left</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for detail in details %}
-          <div>
-            {% if detail.red %}
-            <tr style="background-color: red">
-              <td>{{detail.name}}</td>
-              <td>{{detail.quantity}}</td>
-              <td>{{detail.expiry}}</td>
-              <td>{{detail.time_left}}</td>
-            </tr>
-            {% endif %} {% if detail.yellow %}
-            <tr style="background-color: yellow">
-              <td>{{detail.name}}</td>
-              <td>{{detail.quantity}}</td>
-              <td>{{detail.expiry}}</td>
-              <td>{{detail.time_left}}</td>
-            </tr>
-            {% endif %} {% if detail.green %}
-            <tr style="background-color: lightgreen">
-              <td>{{detail.name}}</td>
-              <td>{{detail.quantity}}</td>
-              <td>{{detail.expiry}}</td>
-              <td>{{detail.time_left}}</td>
-            </tr>
-            {% endif %}
-          </div>
 
-          {% endfor %}
-        </tbody>
-      </table>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body text-center">
+              <h5 class="card-title m-b-0">Dashboard</h5>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Expiry</th>
+                    <th scope="col">Days Left</th>
+                  </tr>
+                </thead>
+                <tbody class="customtable">
+                  {% for detail in details %}
+                  <div>
+                    {% if detail.red %}
+                    <tr style="background-color: red">
+                      <td>{{detail.name}}</td>
+                      <td>{{detail.quantity}}</td>
+                      <td>{{detail.expiry}}</td>
+                      <td>{{detail.time_left}}</td>
+                    </tr>
+                    {% endif %} {% if detail.yellow %}
+                    <tr style="background-color: yellow">
+                      <td>{{detail.name}}</td>
+                      <td>{{detail.quantity}}</td>
+                      <td>{{detail.expiry}}</td>
+                      <td>{{detail.time_left}}</td>
+                    </tr>
+                    {% endif %} {% if detail.green %}
+                    <tr style="background-color: lightgreen">
+                      <td>{{detail.name}}</td>
+                      <td>{{detail.quantity}}</td>
+                      <td>{{detail.expiry}}</td>
+                      <td>{{detail.time_left}}</td>
+                    </tr>
+                    {% endif %}
+                  </div>
+
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!--[if lt IE 7]>
-      <p class="browsehappy">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="#">upgrade your browser</a> to improve your experience.
-      </p>
-    <![endif]-->
-
-    <script src="" async defer></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
